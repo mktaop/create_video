@@ -228,8 +228,6 @@ def main():
       model_name=model_select,
       generation_config=generation_config,)
     
-    
-    
     if example == "Create marketing ad":
         img_model_choice = get_imgmodel()
         numimages = st.text_input('How many images?')  
@@ -247,20 +245,14 @@ def main():
         
         st.write("The following pre-written prompt is sent to the LLM to generate image descriptions \\ which are used as prompt into the vision model.")
         st.markdown(final_text)
-        #prompt = st.text_input("Current prompt, make changes as needed.", final_text)
-        #if prompt:
+
         response = model.generate_content([final_text], stream=False)
         json_string = f"""
         {response.text}
         """
         data = json.loads(json_string)
         num_of_images = len(data['scenes'])
-        #for numx in range(num_of_images):
-            #st.write(data['scenes'][numx])
-        
-        #st.write(img_model_choice)
-        #proceed = st.button("Generate the images and create video", type="primary")
-        #if proceed:
+
         delete_all_files("/Users/avi_patel/Documents/ytdemo")
         
         for numx2 in range(num_of_images):
