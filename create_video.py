@@ -87,22 +87,16 @@ def count_png_files(folder_path):
 
 def create_video_from_images(image_folder, audio_file, output_video_file, num_of_images, image_display_duration=2, resolution=(800, 640)):
     """
-    
+    This function takes the images and the audio to create the final video.  Please read all the comments provided in this function.
 
     Parameters
     ----------
-    image_folder : TYPE
-        DESCRIPTION.
-    audio_file : TYPE
-        DESCRIPTION.
-    output_video_file : TYPE
-        DESCRIPTION.
-    num_of_images : TYPE
-        DESCRIPTION.
-    image_display_duration : TYPE, optional
-        DESCRIPTION. The default is 2.
-    resolution : TYPE, optional
-        DESCRIPTION. The default is (800, 640).
+    image_folder : Folder with the images.
+    audio_file : Folder housing the audio file.
+    output_video_file : Name and location for the final video file.
+    num_of_images : Number of images in the folder.
+    image_display_duration : If you want each image to be displayed for a certain duration then provide the value. The default is 2 seconds.
+    resolution : Each image needs to standardized to a certain resolution. The default is (800, 640).
 
     Raises
     ------
@@ -341,7 +335,7 @@ def main():
             response = model2.generate_content([image_file, prompt2],
                                               request_options={"timeout": 600})
             narration = response.text
-            voice_model = "en-US-Standard-A" #for male voice use "en-US-Standard-B"
+            voice_model = "en-US-Standard-A" 
             input_text = texttospeech.SynthesisInput(text=narration)
             voice = texttospeech.VoiceSelectionParams(language_code="en-US", name=voice_model)
             audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.LINEAR16, speaking_rate=1)
